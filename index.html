@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PromoRadar — Encontre ofertas. Compare preços. Economize.</title>
+  <meta name="description" content="PromoRadar: painel visual para encontrar, filtrar e comparar promoções de várias lojas em um só lugar." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="brand">
+        <span class="brand__blip" aria-hidden="true"></span>
+        <div>
+          <p class="brand__name">PromoRadar</p>
+          <p class="brand__tagline">Encontre ofertas. Compare preços. Economize.</p>
+        </div>
+      </div>
+      <div class="site-header__actions">
+        <button id="favoritesToggle" class="btn btn--ghost" type="button">
+          ♥ Favoritos <span id="favoritesCount" class="favorites-count is-hidden">0</span>
+        </button>
+        <button id="themeToggle" class="btn btn--ghost" type="button">☀️ Modo claro</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="search-hero">
+    <div class="radar-sweep" aria-hidden="true">
+      <span class="radar-sweep__ring"></span>
+      <span class="radar-sweep__ring"></span>
+      <span class="radar-sweep__ring"></span>
+      <span class="radar-sweep__blade"></span>
+    </div>
+    <div class="search-hero__inner">
+      <p class="demo-banner">Dados de demonstração — integração com ofertas reais será adicionada posteriormente.</p>
+      <form id="searchForm" class="search-form" role="search">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Buscar por produto, marca, categoria ou loja..."
+          aria-label="Buscar ofertas"
+        />
+        <button type="submit" class="btn btn--primary">Buscar</button>
+        <button id="clearSearch" type="button" class="btn btn--ghost">Limpar</button>
+      </form>
+    </div>
+  </section>
+
+  <main id="mainContent" class="layout">
+    <aside class="filters" aria-label="Filtros">
+      <details class="filters__mobile-toggle" open>
+        <summary>Filtros e ordenação</summary>
+        <div class="filters__grid">
+
+          <div class="field">
+            <label for="storeFilter">Loja</label>
+            <select id="storeFilter">
+              <option value="all">Todas</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="categoryFilter">Categoria</label>
+            <select id="categoryFilter">
+              <option value="all">Todas</option>
+            </select>
+          </div>
+
+          <div class="field field--range">
+            <label>Preço (R$)</label>
+            <div class="range-inputs">
+              <input id="minPrice" type="number" min="0" placeholder="Mín." aria-label="Preço mínimo" />
+              <span aria-hidden="true">—</span>
+              <input id="maxPrice" type="number" min="0" placeholder="Máx." aria-label="Preço máximo" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="discountFilter">Desconto</label>
+            <select id="discountFilter">
+              <option value="all">Todos</option>
+              <option value="10">10%+</option>
+              <option value="20">20%+</option>
+              <option value="30">30%+</option>
+              <option value="50">50%+</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="sortBy">Ordenar por</label>
+            <select id="sortBy">
+              <option value="relevance">Mais relevantes</option>
+              <option value="price-asc">Menor preço</option>
+              <option value="price-desc">Maior preço</option>
+              <option value="discount-desc">Maior desconto</option>
+              <option value="recent">Mais recentes</option>
+            </select>
+          </div>
+
+          <button id="clearFilters" type="button" class="btn btn--ghost">Limpar filtros</button>
+        </div>
+      </details>
+    </aside>
+
+    <section class="results" aria-live="polite">
+      <p id="resultsCount" class="results__count"></p>
+      <div id="productGrid" class="product-grid"></div>
+
+      <div id="emptyState" class="empty-state is-hidden">
+        <p class="empty-state__title">Não encontramos ofertas para essa busca.</p>
+        <p class="empty-state__subtitle">Tente ajustar os termos ou remover alguns filtros.</p>
+        <button id="clearFiltersEmpty" type="button" class="btn btn--primary">Limpar filtros</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="loadingState" class="loading-state is-hidden">
+    <div class="loading-state__spinner" aria-hidden="true"></div>
+    <p>Buscando ofertas...</p>
+    <div class="skeleton-grid">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>PromoRadar — projeto pessoal em modo demonstração. Nenhum preço ou link acima é uma oferta real.</p>
+  </footer>
+
+  <script src="js/products.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
